@@ -1,35 +1,31 @@
-<?php
-/*
-UploadiFive
-Copyright (c) 2012 Reactive Apps, Ronnie Garcia
-*/
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WIZARD'S FILE HOSTING THING</title>
+    <!-- The style.css file allows you to change the look of your web pages.
+         If you include the next line in all your web pages, they will all share the same look.
+         This makes it easier to make new pages for your site. -->
+    <link href="/style.css" rel="stylesheet" type="text/css" media="all">
+  </head>
+  <body>
+    <h1>Welcome to my Website!</h1>
 
-// Set the uplaod directory
-$uploadDir = '/uploads/';
+    <p>This is a paragraph! Here's how you make a link: <a href="https://neocities.org">Neocities</a>.</p>
 
-// Set the allowed file extensions
-$fileTypes = array('jpg', 'jpeg', 'gif', 'png'); // Allowed file extensions
+    <p>Here's how you can make <strong>bold</strong> and <em>italic</em> text.</p>
 
-$verifyToken = md5('unique_salt' . $_POST['timestamp']);
+    <p>Here's how to make a list:</p>
 
-if (!empty($_FILES) && $_POST['token'] == $verifyToken) {
-	$tempFile   = $_FILES['Filedata']['tmp_name'];
-	$uploadDir  = $_SERVER['DOCUMENT_ROOT'] . $uploadDir;
-	$targetFile = $uploadDir . $_FILES['Filedata']['name'];
-
-	// Validate the filetype
-	$fileParts = pathinfo($_FILES['Filedata']['name']);
-	if (in_array(strtolower($fileParts['extension']), $fileTypes)) {
-
-		// Save the file
-		move_uploaded_file($tempFile, $targetFile);
-		echo 1;
-
-	} else {
-
-		// The file type wasn't allowed
-		echo 'Invalid file type.';
-
-	}
-}
-?>
+    <ul>
+      <li>First thing</li>
+      <li>Second thing</li>
+      <li>Third thing</li>
+    </ul>
+    <form id="uploadbanner" enctype="multipart/form-data" method="post" action="#">
+      <input id="fileupload" name="myfile" type="file" />
+     <input type="submit" value="submit" id="submit" />
+    </form>
+  </body>
+</html>
